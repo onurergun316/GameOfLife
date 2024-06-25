@@ -35,4 +35,11 @@ public class GameController {
         view.setRunning(false);
         timer.stop();
     }
+
+    public void generate() {
+        if(!view.isRunning()) {
+            model.generateRandomCells();
+            view.refresh();
+        }
+    }
 }

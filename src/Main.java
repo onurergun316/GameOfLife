@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         GameOfLifeModel model = new GameOfLifeModel(50, 50);
         GameController[] controller = new GameController[1];
-        GameOfLifeView view = new GameOfLifeView(model, e -> controller[0].start(), e -> controller[0].stop());
+        GameOfLifeView view = new GameOfLifeView(model, e -> controller[0].start(), e -> controller[0].stop(), e -> controller[0].generate());
 
         controller[0] = new GameController(model, view);
     }

@@ -11,20 +11,24 @@ public class GameOfLifeView {
     private GamePanel gamePanel;
     private JButton startButton;
     private JButton stopButton;
+    private JButton generateButton;
     private boolean isRunning;
 
-    public GameOfLifeView(GameOfLifeModel model, ActionListener startListener, ActionListener stopListener) {
+    public GameOfLifeView(GameOfLifeModel model, ActionListener startListener, ActionListener stopListener, ActionListener generateListener) {
         frame = new JFrame("Game of Life");
-        gamePanel = new GamePanel(model, this);  // Pass the GameOfLifeView instance to GamePanel
+        gamePanel = new GamePanel(model, this);
         startButton = new JButton("Start");
         stopButton = new JButton("Stop");
+        generateButton = new JButton("Generate");
 
         startButton.addActionListener(startListener);
         stopButton.addActionListener(stopListener);
+        generateButton.addActionListener(generateListener);
 
         JPanel controlPanel = new JPanel();
         controlPanel.add(startButton);
         controlPanel.add(stopButton);
+        controlPanel.add(generateButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -47,5 +51,6 @@ public class GameOfLifeView {
         this.isRunning = isRunning;
         startButton.setEnabled(!isRunning);
         stopButton.setEnabled(isRunning);
+        generateButton.setEnabled(!isRunning);
     }
 }

@@ -1,27 +1,29 @@
 package model;
 
+import java.util.Random;
+
 public class GameOfLifeModel {
     private int rows;
     private int cols;
     private Cell[][] grid;
+    private Random random;
 
     public GameOfLifeModel(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
         grid = new Cell[rows][cols];
+        random = new Random();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 grid[i][j] = new Cell(false);
             }
         }
-        // Set initial patterns at different locations
-        setInitialPattern(1, 2); // Glider at (1, 2)
-        setInitialPattern(10, 10); // Glider at (10, 10)
-        setInitialPattern(20, 20); // Glider at (20, 20)
+        setInitialPatternGlider(1, 2);
+        setInitialPatternGlider(10, 10);
+        setInitialPatternGlider(20, 20);
     }
 
-    private void setInitialPattern(int startX, int startY) {
-        // Example pattern: a simple glider
+    private void setInitialPatternGlider(int startX, int startY) {
         if (isWithinBounds(startX + 1, startY + 2)) grid[startX + 1][startY + 2].setAlive(true);
         if (isWithinBounds(startX + 2, startY + 3)) grid[startX + 2][startY + 3].setAlive(true);
         if (isWithinBounds(startX + 3, startY + 1)) grid[startX + 3][startY + 1].setAlive(true);
@@ -71,6 +73,16 @@ public class GameOfLifeModel {
 
     public void toggleCell(int row, int col) {
         grid[row][col].setAlive(!grid[row][col].isAlive());
+    }
+
+    public void generateRandomCells() {
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if(!grid[i][j].isAlive() && random.nextDouble() < 0.2) {
+                    grid[i][j].setAlive(true);
+                }
+            }
+        }
     }
 }
 
