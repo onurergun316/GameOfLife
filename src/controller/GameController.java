@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameController {
-    private GameOfLifeModel model;
-    private GameOfLifeView view;
-    private Timer timer;
+    private final GameOfLifeModel model;
+    private final GameOfLifeView view;
+    private final Timer timer;
 
     public GameController(GameOfLifeModel model, GameOfLifeView view) {
         this.model = model;
@@ -20,6 +20,7 @@ public class GameController {
             public void actionPerformed(ActionEvent e) {
                 model.update();
                 view.refresh();
+                view.updateGenerationLabel(model.getGenerationCounter());
             }
         });
 
@@ -37,7 +38,7 @@ public class GameController {
     }
 
     public void generate() {
-        if(!view.isRunning()) {
+        if(!view.getRunning()) {
             model.generateRandomCells();
             view.refresh();
         }

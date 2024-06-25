@@ -9,17 +9,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class GamePanel extends JPanel {
-    private GameOfLifeModel model;
-    private GameOfLifeView view;
+    private final GameOfLifeModel model;
     private static final int CELL_SIZE = 10;
 
     public GamePanel(GameOfLifeModel model, GameOfLifeView view) {
         this.model = model;
-        this.view = view;
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!view.isRunning()) {
+                if (!view.getRunning()) {
                     int row = e.getY() / CELL_SIZE;
                     int col = e.getX() / CELL_SIZE;
                     model.toggleCell(row, col);

@@ -7,19 +7,20 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class GameOfLifeView {
-    private JFrame frame;
-    private GamePanel gamePanel;
-    private JButton startButton;
-    private JButton stopButton;
-    private JButton generateButton;
+    private final GamePanel gamePanel;
+    private final JButton startButton;
+    private final JButton stopButton;
+    private final JButton generateButton;
+    private final JLabel generationLabel;
     private boolean isRunning;
 
     public GameOfLifeView(GameOfLifeModel model, ActionListener startListener, ActionListener stopListener, ActionListener generateListener) {
-        frame = new JFrame("Game of Life");
+        JFrame frame = new JFrame("Game of Life");
         gamePanel = new GamePanel(model, this);
         startButton = new JButton("Start");
         stopButton = new JButton("Stop");
         generateButton = new JButton("Generate");
+        generationLabel = new JLabel("Generation: 0");
 
         startButton.addActionListener(startListener);
         stopButton.addActionListener(stopListener);
@@ -33,6 +34,7 @@ public class GameOfLifeView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(gamePanel, BorderLayout.CENTER);
+        frame.add(generationLabel, BorderLayout.NORTH);
         frame.add(controlPanel, BorderLayout.SOUTH);
         frame.pack();
         frame.setVisible(true);
@@ -43,7 +45,7 @@ public class GameOfLifeView {
         gamePanel.repaint();
     }
 
-    public boolean isRunning() {
+    public boolean getRunning() {
         return isRunning;
     }
 
@@ -52,5 +54,9 @@ public class GameOfLifeView {
         startButton.setEnabled(!isRunning);
         stopButton.setEnabled(isRunning);
         generateButton.setEnabled(!isRunning);
+    }
+
+    public void updateGenerationLabel(int generationCount) {
+        generationLabel.setText("Generation: " + generationCount);
     }
 }

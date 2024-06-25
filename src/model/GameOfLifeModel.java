@@ -3,10 +3,11 @@ package model;
 import java.util.Random;
 
 public class GameOfLifeModel {
-    private int rows;
-    private int cols;
+    private final int rows;
+    private final int cols;
     private Cell[][] grid;
-    private Random random;
+    private final Random random;
+    private int generationCounter;
 
     public GameOfLifeModel(int rows, int cols) {
         this.rows = rows;
@@ -21,6 +22,7 @@ public class GameOfLifeModel {
         setInitialPatternGlider(1, 2);
         setInitialPatternGlider(10, 10);
         setInitialPatternGlider(20, 20);
+        this.generationCounter = 0;
     }
 
     private void setInitialPatternGlider(int startX, int startY) {
@@ -50,6 +52,7 @@ public class GameOfLifeModel {
             }
         }
         grid = nextGrid;
+        generationCounter++;
     }
 
     private int countLiveNeighbors(int row, int col) {
@@ -83,6 +86,10 @@ public class GameOfLifeModel {
                 }
             }
         }
+    }
+
+    public int getGenerationCounter() {
+        return generationCounter;
     }
 }
 
