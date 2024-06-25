@@ -14,6 +14,23 @@ public class GameOfLifeModel {
                 grid[i][j] = new Cell(false);
             }
         }
+        // Set initial patterns at different locations
+        setInitialPattern(1, 2); // Glider at (1, 2)
+        setInitialPattern(10, 10); // Glider at (10, 10)
+        setInitialPattern(20, 20); // Glider at (20, 20)
+    }
+
+    private void setInitialPattern(int startX, int startY) {
+        // Example pattern: a simple glider
+        if (isWithinBounds(startX + 1, startY + 2)) grid[startX + 1][startY + 2].setAlive(true);
+        if (isWithinBounds(startX + 2, startY + 3)) grid[startX + 2][startY + 3].setAlive(true);
+        if (isWithinBounds(startX + 3, startY + 1)) grid[startX + 3][startY + 1].setAlive(true);
+        if (isWithinBounds(startX + 3, startY + 2)) grid[startX + 3][startY + 2].setAlive(true);
+        if (isWithinBounds(startX + 3, startY + 3)) grid[startX + 3][startY + 3].setAlive(true);
+    }
+
+    private boolean isWithinBounds(int x, int y) {
+        return x >= 0 && x < rows && y >= 0 && y < cols;
     }
 
     public void update() {
@@ -56,3 +73,4 @@ public class GameOfLifeModel {
         grid[row][col].setAlive(!grid[row][col].isAlive());
     }
 }
+

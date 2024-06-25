@@ -5,9 +5,9 @@ import view.GameOfLifeView;
 public class Main {
     public static void main(String[] args) {
         GameOfLifeModel model = new GameOfLifeModel(50, 50);
-        GameOfLifeView view = new GameOfLifeView(model);
-        GameController controller = new GameController(model, view);
+        GameController[] controller = new GameController[1];
+        GameOfLifeView view = new GameOfLifeView(model, e -> controller[0].start(), e -> controller[0].stop());
 
-        controller.start();
+        controller[0] = new GameController(model, view);
     }
 }

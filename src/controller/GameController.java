@@ -22,13 +22,17 @@ public class GameController {
                 view.refresh();
             }
         });
+
+        view.setRunning(false);
     }
 
     public void start() {
+        view.setRunning(true);
         timer.start();
     }
 
     public void stop() {
+        view.setRunning(false);
         timer.stop();
     }
 }
