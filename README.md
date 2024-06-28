@@ -44,8 +44,5 @@ This project is a simulation of Conway's Game of Life, created using Java and Sw
 
 ## Screen Recording
 
-<video width="600" controls>
-  <source src="recordings/recording.mov" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Watch the video](recordings/recording.mov)
 
