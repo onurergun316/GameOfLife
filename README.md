@@ -21,7 +21,7 @@ This project is a simulation of Conway's Game of Life, created using Java and Sw
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/GameOfLife.git
+    git clone https://github.com/onurergun316/GameOfLife.git
     cd GameOfLife
     ```
 
