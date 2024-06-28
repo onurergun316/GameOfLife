@@ -41,3 +41,11 @@ This project is a simulation of Conway's Game of Life, created using Java and Sw
 - **Stop:** Click the "Stop" button to pause the simulation.
 - **Generate:** Click the "Generate" button to randomly populate the grid with live cells. This button is only enabled when the simulation is stopped.
 - **Toggle Cells:** Click on any cell to toggle its state between alive and dead. This is only possible when the simulation is stopped.
+
+## Screen Recording
+
+<video width="600" controls>
+  <source src="recordings/recording.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
