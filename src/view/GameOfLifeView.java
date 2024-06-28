@@ -3,6 +3,7 @@ package view;
 import model.GameOfLifeModel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,9 @@ public class GameOfLifeView {
 
     public GameOfLifeView(GameOfLifeModel model, ActionListener startListener, ActionListener stopListener, ActionListener generateListener) {
         JFrame frame = new JFrame("Game of Life");
+        JPanel contentPane = new JPanel(new BorderLayout());
+        contentPane.setBorder(new EmptyBorder(10, 30, 0, 20));
+
         gamePanel = new GamePanel(model, this);
         startButton = new JButton("Start");
         stopButton = new JButton("Stop");
@@ -31,12 +35,15 @@ public class GameOfLifeView {
         controlPanel.add(stopButton);
         controlPanel.add(generateButton);
 
+        frame.setContentPane(contentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(gamePanel, BorderLayout.CENTER);
         frame.add(generationLabel, BorderLayout.NORTH);
         frame.add(controlPanel, BorderLayout.SOUTH);
         frame.pack();
+        Dimension preferredSize = frame.getPreferredSize();
+        frame.setSize(preferredSize.width + 10, preferredSize.height + 20);
         frame.setVisible(true);
         isRunning = false;
     }
