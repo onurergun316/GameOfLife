@@ -1,6 +1,3 @@
-### Description for the Game of Life Project
-
----
 
 ## Game of Life Simulation
 
